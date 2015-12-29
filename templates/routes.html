@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">List All The Routes Defined</h3>
+      </div>
+      <hr/>
+      <div>
+        This is a list of the defined routes on the application. They've been passed to 
+        the template after retrieving the list using this code:
+        <ul>
+        {% for route in routes %}
+        <li>{{route}}</li>
+        {% endfor %}
+        </ul>
+    <div class="header">
+        <h3 class="text-muted">Code to retrieve the routes</h3>
+      </div>
+      <hr/>    
+<pre>
+for rule in app.url_map.iter_rules():
+# Filter out rules we can't navigate to in a browser
+# and rules that require parameters
+if "GET" in rule.methods and len(rule.defaults) >= len(rule.arguments):
+    url = url_for(rule.endpoint)
+    links.append((url, rule.endpoint))
+# links is now a list of url, endpoint tuples
+</pre>
+      </div>
+    </div>
+  </body>
+</html>
